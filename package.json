@@ -1,0 +1,16 @@
+{
+  "name": "etl-digital-collections",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "highland": "^2.10.1",
+    "mkdirp": "^0.5.1",
+    "ramda": "^0.22.1"
+  }
+}
