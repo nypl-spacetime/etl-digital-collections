@@ -60,10 +60,10 @@ function writeLines (dir, uuid, lines, callback) {
     .map((data) => ([
       data.dataset, data.lines
     ]))
-    .toArray((data) => {
-      const contents = R.fromPairs(data)
-      writeContents(dir, uuid, contents, callback)
-    })
+    .toArray((data) => callback(null, {
+      uuid,
+      data: R.fromPairs(data)
+    }))
 }
 
 function aggregate (config, dirs, tools, callback) {
@@ -83,6 +83,13 @@ function aggregate (config, dirs, tools, callback) {
     .map((uuidLines) => H.curry(writeLines, dirs.current)(uuidLines.uuid, uuidLines.lines))
     .nfcall([])
     .series()
+    .reduce({}, (all, perUuid) => Object.assign(all, {
+      [perUuid.uuid]: perUuid.data
+    }))
+    .each((all) => {
+      const filename = path.join(dirs.current, 'digital-collections.aggregate.json')
+      fs.writeFileSync(filename, JSON.stringify(all, null, 2))
+    })
     .done(callback)
 }
 
