@@ -1,16 +1,24 @@
 {
   "name": "etl-digital-collections",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Creates an aggregate of NYC Space/Time Directory data for Digital Collections See Alsos",
+  "main": "digital-collections.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard",
+    "readme": "spacetime-generate-etl-readme ./ -o README.md"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/nypl-spacetime/etl-digital-collections.git"
+  },
+  "author": "Bert Spaan",
+  "license": "MIT",
+  "devDependencies": {
+    "spacetime-generate-etl-readme": "~0.2.0",
+    "standard": "^6.0.8"
+  },
   "dependencies": {
     "highland": "^2.10.1",
-    "mkdirp": "^0.5.1",
     "ramda": "^0.22.1"
   }
 }

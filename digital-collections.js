@@ -2,7 +2,6 @@ const fs = require('fs')
 const path = require('path')
 const R = require('ramda')
 const H = require('highland')
-const mkdirp = require('mkdirp')
 
 const getFilename = (currentDir, dataset) =>
   path.join(currentDir, '..', '..', 'transform', dataset, `${dataset}.objects.ndjson`)
@@ -35,16 +34,6 @@ function getLines (obj) {
       dataset: obj.dataset,
       object
     }))
-}
-
-function writeContents(dir, uuid, contents, callback) {
-  // const filename = path.join(dir, ...uuid.split('-')) + '.json'
-  // mkdirp.sync(path.dirname(filename))
-
-  // const filename = path.join(dir, `${uuid}.json`)
-  // fs.writeFileSync(filename, JSON.stringify(contents, null, 2))
-
-  callback()
 }
 
 function writeLines (dir, uuid, lines, callback) {

@@ -1,9 +1,12 @@
 {
   "id": "digital-collections",
-  "title": "Creates data for Digital Collections See Alsos",
+  "title": "Digital Collections See Alsos",
   "license": "CC0",
-  "description": "dsdfadfdsf",
+  "description": "Creates an aggregate of NYC Space/Time Directory data for Digital Collections See Alsos",
   "author": "Bert Spaan",
   "website": "http://digitalcollections.nypl.org/",
-  "editor": "Bert Spaan"
+  "editor": "Bert Spaan",
+  "dependsOn": [
+    "*.transform"
+  ]
 }
