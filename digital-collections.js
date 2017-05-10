@@ -3,11 +3,12 @@ const path = require('path')
 const R = require('ramda')
 const H = require('highland')
 
-const getFilename = (currentDir, dataset) =>
-  path.join(currentDir, '..', '..', 'transform', dataset, `${dataset}.objects.ndjson`)
+function getFilename (dirs, dataset) {
+  return path.join(dirs.getDir(dataset, 'transform'), `${dataset}.objects.ndjson`)
+}
 
 const datasets = {
-  'oldnyc': {
+  oldnyc: {
     getUuid: (object) => object.data && object.data.uuid,
     transformToDc: (object) => ({
       id: object.id,
@@ -15,7 +16,7 @@ const datasets = {
       geometry: object.geometry
     })
   },
-  'mapwarper': {
+  mapwarper: {
     getUuid: (object) => object.data && object.data.uuid,
     transformToDc: (object) => ({
       id: object.id,
@@ -59,8 +60,9 @@ function aggregate (config, dirs, tools, callback) {
   H(Object.keys(datasets))
     .map((dataset) => ({
       dataset,
-      filename: getFilename(dirs.current, dataset)
+      filename: getFilename(dirs, dataset)
     }))
+    .filter((dataset) => fs.existsSync(dataset.filename))
     .map(getLines)
     .sequence()
     .filter((line) => datasets[line.dataset].getUuid && datasets[line.dataset].transformToDc)

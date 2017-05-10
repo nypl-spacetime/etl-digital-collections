@@ -1,6 +1,6 @@
 {
   "name": "etl-digital-collections",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Creates an aggregate of NYC Space/Time Directory data for Digital Collections See Alsos",
   "main": "digital-collections.js",
   "scripts": {
